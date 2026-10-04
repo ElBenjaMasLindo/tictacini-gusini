@@ -1,5 +1,5 @@
-use gtk::prelude::*;
-use gtk::Widget;
+use adw::gtk::prelude::*;
+use adw::gtk::Widget;
 
 pub const NAME: &str = "Tictacini Gusini";
 pub const PADDING: i32 = 15;

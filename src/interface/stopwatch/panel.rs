@@ -7,10 +7,10 @@ use adw::gtk::{Box, Orientation};
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use crate::G;
+use crate::gb;
 
 pub fn panel() -> Box {
-    let pagina = Box::new(Orientation::Vertical, G::PADDING);
+    let pagina = Box::new(Orientation::Vertical, gb::PADDING);
     let timer = Rc::new(RefCell::new(T::Timer::new()));
 
     pagina.append(&components::clock::index(timer.clone()));
