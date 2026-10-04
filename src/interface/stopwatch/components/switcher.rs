@@ -1,10 +1,10 @@
-use super::timer as T;
+use super::super::timer as T;
 use crate::G;
 
 use adw::prelude::*; // GTK
-use adw::gtk::{Button, Label, glib};
+use adw::gtk::{Button};
 
-use std::cell::{Cell, RefCell};
+use std::cell::RefCell;
 use std::rc::Rc;
 
 fn state_to_text(state: &T::States) -> String {
@@ -15,19 +15,19 @@ fn state_to_text(state: &T::States) -> String {
     }
 }
 
-pub fn clock(_timer: &mut T::Timer) -> Label {
-    let clock = Label::new(Some("00:00"));
-    clock.set_size_request(500, 500);
-    G::space(&clock);
-    
-    clock
-}
-
-pub fn switch(timer: &mut T::Timer) -> Button {
+pub fn index(timer: Rc<RefCell<T::Timer>>) -> Button {
     let button = Button::new();
+    
+    let timer = timer.clone();
 
     button.set_size_request(200, 200);
     G::space(&button);
+    button.set_label(&state_to_text(&timer.borrow().state));
+
+    button.connect_clicked(move |button| {
+        timer.borrow_mut().play();
+        button.set_label(&state_to_text(&timer.borrow().state));
+    });
 
     button
 }
