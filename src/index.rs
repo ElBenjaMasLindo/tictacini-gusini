@@ -1,4 +1,4 @@
-use crate::global;
+use crate::G;
 use crate::interface::interface;
 
 use adw::prelude::*; // GTK
@@ -13,17 +13,14 @@ pub fn index(app: &Application) {
     program.add_top_bar(&interface::bar(&tabs));
     program.set_content(Some(&tabs));
     
-    program.set_margin_top(global::PADDING); // Padding
-    program.set_margin_bottom(global::PADDING);
-    program.set_margin_start(global::PADDING);
-    program.set_margin_end(global::PADDING);
+    G::space(&program);
 
     let index = ApplicationWindow::builder()
         .default_width(TAMAÑO.0) // x
         .default_height(TAMAÑO.1) // y
         .application(app)
         .content(&program)
-        .title(global::NAME)
+        .title(G::NAME)
         .build();
 
     index.present();

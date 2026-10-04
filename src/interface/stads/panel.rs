@@ -1,11 +1,12 @@
 use adw::prelude::*; // GTK
 
-use adw::gtk::{Box, Label, Orientation};
+#[allow(unused_imports)]
+use adw::gtk::{Box, Button, Label, Orientation};
 
-use crate::global;
+use crate::G;
 
 pub fn panel() -> Box {
-    let pagina = Box::new(Orientation::Vertical, global::PADDING);
+    let pagina = Box::new(Orientation::Vertical, G::PADDING);
     pagina.append(&Label::new(Some("Segunda")));
     pagina
 }
