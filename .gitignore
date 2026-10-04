@@ -7,6 +7,11 @@
 result
 result-*
 
+# Devenv
+.devenv*
+devenv.local.nix
+devenv.local.yaml
+
 # IDEs
 .vscode/
 .idea/
