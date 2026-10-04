@@ -2,7 +2,7 @@ use super::super::timer as T;
 use crate::gb;
 
 use adw::prelude::*; // GTK
-use adw::gtk::{Label, CssProvider, glib};
+use adw::gtk::{Label, pango, gdk, glib};
 
 use std::time::Duration;
 use std::cell::RefCell;
@@ -25,7 +25,7 @@ fn duration_to_string(input: Option<Duration>) -> String {
 
 pub fn index(timer: Rc<RefCell<T::Timer>>) -> Label {
     let clock = Label::new(Some(&duration_to_string(None)));
-    clock.add_css_class("title-1");
+    style(&clock);
     
     gb::space(&clock);
 
@@ -33,9 +33,21 @@ pub fn index(timer: Rc<RefCell<T::Timer>>) -> Label {
     let clock_clone = clock.clone();
 
     let _source = glib::timeout_add_seconds_local(1, move || {
-        clock_clone.set_label(&duration_to_string(Some(timer.borrow().now()))); 
+        clock_clone.set_label(
+            &duration_to_string(
+                Some(timer.borrow().now())
+            )
+        ); 
         glib::ControlFlow::Continue
     });
     
     clock
+}
+
+fn style(label: &Label) {
+    let attrs = pango::AttrList::new();
+    let size = pango::AttrSize::new(50 * pango::SCALE);
+    
+    attrs.insert(size);
+    label.set_attributes(Some(&attrs));
 }
