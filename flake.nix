@@ -21,7 +21,13 @@
             rustfmt
             clippy
             rust-analyzer
+            pkg-config
           ];
+
+          buildInputs = with pkgs; [
+            gtk4
+          ];
+
           RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
 
           shellHook = ''
