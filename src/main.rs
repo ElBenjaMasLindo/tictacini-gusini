@@ -4,7 +4,7 @@ use adw::prelude::*;
 #[allow(unused_imports)]
 use adw::{Application, ToolbarView, ApplicationWindow, HeaderBar, ViewStack, ViewSwitcher, glib};
 #[allow(unused_imports)]
-use adw::gtk::{Box, Button, Label, Orientation};
+use adw::gtk::{Box, Button, Label, Orientation, Align};
 
 const NAME: &str = "Tictacini Gusini";
 const PADDING: i32 = 15;
@@ -44,6 +44,10 @@ fn bar(tabs: &ViewStack) -> ViewSwitcher {
     ViewSwitcher::builder()
         .stack(&tabs)
         .policy(adw::ViewSwitcherPolicy::Wide)
+        
+        .hexpand(false) // Lo Centramos
+        .halign(Align::Center)
+        
         .build()
 }
 
