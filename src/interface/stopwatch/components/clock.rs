@@ -1,8 +1,7 @@
 use super::super::timer as T;
 use crate::gb;
 
-use adw::prelude::*; // GTK
-use adw::gtk::{Label, pango, gdk, glib};
+use adw::gtk::{Label, pango, glib}; // GTK
 
 use std::time::Duration;
 use std::cell::RefCell;
