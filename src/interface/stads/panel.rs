@@ -1,5 +1,6 @@
 use adw::prelude::*; // GTK
-use adw::gtk::{Box, Button, Label, Orientation};
+
+use adw::gtk::{Box, Label, Orientation};
 
 use crate::global;
 

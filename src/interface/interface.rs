@@ -1,5 +1,5 @@
 use adw::{ViewSwitcher, ViewStack}; // GTK
-use adw::gtk::{Align};
+use adw::gtk::Align;
 
 use super::stopwatch::panel as stopwatch;
 use super::stads::panel as stads;

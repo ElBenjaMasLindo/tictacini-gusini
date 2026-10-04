@@ -1,7 +1,7 @@
 use super::timer as T;
 
 use adw::prelude::*; // GTK
-use adw::gtk::{Box, Button, Label, Orientation, glib};
+use adw::gtk::{Box, Button, Label, Orientation};
 
 use crate::global;
 
@@ -15,18 +15,21 @@ fn state_to_text(state: T::States) -> String {
 
 pub fn panel() -> Box {
     let pagina = Box::new(Orientation::Vertical, global::PADDING);
-
     let mut timer = T::Timer::new();
-
-    let estado = Label::new(Some("Laburando"));
-    let clock = Label::new(Some("00:00"));
     
-    let switch = Button::new();
-    switch.set_label("Arrancar");
 
-    pagina.append(&estado);
-    pagina.append(&clock);
-    pagina.append(&switch);
+    pagina.append(&clock(&mut timer));
+    pagina.append(&switch(&mut timer));
     
     pagina
+}
+
+fn clock(_timer: &mut T::Timer) -> Label {
+    let clock = Label::new(Some("00:00"));
+    clock
+}
+
+fn switch(_timer: &mut T::Timer) -> Button {
+    let button = Button::new();
+    button
 }
