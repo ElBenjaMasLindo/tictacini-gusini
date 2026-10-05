@@ -1,6 +1,6 @@
 use std::time::{Instant, Duration};
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum States {
     Init,
     Work,
@@ -23,9 +23,10 @@ impl Timer {
     }
 
     pub fn play(&mut self) {
+        println!("{:?}", self.state);
         match self.state {
             States::Init => {
-                self.time.push((States::Init, Instant::now()));
+                self.time.push((States::Work, Instant::now()));
                 self.state = States::Work;
             },
             States::Other => {
@@ -37,6 +38,7 @@ impl Timer {
                 self.state = States::Other;
             },
         }
+        println!("{:?}", self.state);
     }
 
     pub fn show(&self) -> Vec<(&States, Option<Duration>)> {
@@ -44,12 +46,13 @@ impl Timer {
         
         for i in 0..self.time.len() {
             let actual = &self.time[i];
+
             let Some(siguiente) = &self.time.get(i + 1) else {
-                corridas.push((&self.state, None));
+                corridas.push((&actual.0, None));
                 continue;
             };
                 
-            corridas.push((&self.state, Some(
+            corridas.push((&actual.0, Some(
                 siguiente.1 // Tiempo Donde Acabo
                 -
                 actual.1 // Tiempo Donde Inicio

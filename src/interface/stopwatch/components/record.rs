@@ -22,6 +22,8 @@ pub fn index(_timer: Rc<RefCell<T::Timer>>) -> ScrolledWindow {
         gtk::PolicyType::Automatic // Y
     );
 
+    scroll.set_hexpand(true);
+
     gb::space(&scroll);
 
     scroll
@@ -29,6 +31,7 @@ pub fn index(_timer: Rc<RefCell<T::Timer>>) -> ScrolledWindow {
 
 pub fn card(state: &T::States, time: Option<Duration>) -> Box {
     let card = Box::new(Orientation::Horizontal, gb::PADDING);
+    card.set_width_request(340);
     card.add_css_class("card");
     
     let state = Label::new(Some(&shared::state_to_text(state)));
@@ -40,8 +43,6 @@ pub fn card(state: &T::States, time: Option<Duration>) -> Box {
     
     gb::space(&label);
     label.set_hexpand(true);
-    label.set_margin_end(27);
-
     
     match time {
         Some(foo) => label.set_label(&shared::duration_to_string(Some(foo))),

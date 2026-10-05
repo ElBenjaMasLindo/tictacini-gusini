@@ -13,6 +13,7 @@ pub fn index(timer: Rc<RefCell<T::Timer>>, record: &Rc<RefCell<ScrolledWindow>>)
     let button = Button::new();
     button.add_css_class("suggested-action");
     button.set_halign(gtk::Align::Center);
+    button.set_size_request(150, 60);
     
     let timer = timer.clone();
     let record = record.clone();
@@ -21,18 +22,23 @@ pub fn index(timer: Rc<RefCell<T::Timer>>, record: &Rc<RefCell<ScrolledWindow>>)
     button.set_label(&shared::state_to_text(&timer.borrow().state));
 
     button.connect_clicked(move |button| {
+        println!("Boton: {:?}", timer.borrow().state);
         timer.borrow_mut().play();
         button.set_label(&shared::state_to_text(&timer.borrow().state));
+        println!("Boton: {:?}", timer.borrow().state);
 
         record.borrow_mut().set_child(None::<&adw::gtk::Widget>);
         
         let container = Box::new(Orientation::Vertical, gb::PADDING);
         record.borrow_mut().set_child(Some(&container));
 
+        println!("I");
         for i in timer.borrow().show().iter().rev() {
+            println!("for I : {i:?}");
             container.append(&record::card(i.0, i.1));
             println!("{i:?}")
         }
+        println!("--------------------");
     });
 
     button

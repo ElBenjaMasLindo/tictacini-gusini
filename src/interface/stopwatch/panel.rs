@@ -15,8 +15,8 @@ pub fn panel() -> Box {
     let record = Rc::new(RefCell::new(components::record::index(timer.clone())));
 
     pagina.append(&components::clock::index(timer.clone()));
-    pagina.append(&components::switcher::index(timer.clone(), &record));
     pagina.append(&record.borrow().clone());
+    pagina.append(&components::switcher::index(timer.clone(), &record));
 
     pagina
 }
