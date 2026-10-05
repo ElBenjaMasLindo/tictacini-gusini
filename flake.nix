@@ -31,6 +31,16 @@
       postInstall = ''
         install -Dm644 data/icons/hicolor/512x512/apps/com.elbenjamaslindo.tictacini-gusini.png \
           $out/share/icons/hicolor/512x512/apps/com.elbenjamaslindo.tictacini-gusini.png
+      
+        mkdir -p $out/share/applications
+        cat > $out/share/applications/com.elbenjamaslindo.tictacini-gusini.desktop <<EOF
+        [Desktop Entry]
+        Name=Tictacini Gusini
+        Exec=tictacini-gusini
+        Icon=com.elbenjamaslindo.tictacini-gusini
+        Type=Application
+        Categories=Game;
+        EOF
       '';
     };
 }
