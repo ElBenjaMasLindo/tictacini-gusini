@@ -21,6 +21,7 @@ impl Timer {
         }
     }
 
+    #[allow(dead_code)]
     pub fn reset(&mut self) {
         *self = Timer::new();
     }
