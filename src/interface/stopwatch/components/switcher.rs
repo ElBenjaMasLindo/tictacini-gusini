@@ -19,12 +19,12 @@ pub fn index(timer: Rc<RefCell<T::Timer>>, record: &Rc<RefCell<ScrolledWindow>>)
     let record = record.clone();
 
     gb::space(&button);
-    button.set_label(&shared::state_to_text(&timer.borrow().state));
+    button.set_label(&shared::state_to_text(&timer.borrow().state)[0]);
 
     button.connect_clicked(move |button| {
         println!("Boton: {:?}", timer.borrow().state);
         timer.borrow_mut().play();
-        button.set_label(&shared::state_to_text(&timer.borrow().state));
+        button.set_label(&shared::state_to_text(&timer.borrow().state)[0]);
         println!("Boton: {:?}", timer.borrow().state);
 
         record.borrow_mut().set_child(None::<&adw::gtk::Widget>);

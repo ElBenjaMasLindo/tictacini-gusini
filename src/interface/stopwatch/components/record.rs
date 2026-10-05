@@ -34,7 +34,7 @@ pub fn card(state: &T::States, time: Option<Duration>) -> Box {
     card.set_width_request(340);
     card.add_css_class("card");
     
-    let state = Label::new(Some(&shared::state_to_text(state)));
+    let state = Label::new(Some(&shared::state_to_text(state)[1]));
     let label = Label::new(None);
 
     gb::space(&state);

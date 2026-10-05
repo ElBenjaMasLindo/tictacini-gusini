@@ -1,11 +1,10 @@
 use super::super::timer as T;
 use std::time::Duration;
 
-pub fn state_to_text(state: &T::States) -> String {
+pub fn state_to_text(state: &T::States) -> [String; 2] {
     match state {
-        T::States::Init => return "Arrancar".to_string(),
-        T::States::Other => return "Descansando".to_string(),
-        T::States::Work => return "Trabajando".to_string()
+        T::States::Other => return ["Descansar".to_string(), "Descanso".to_string()],
+        T::States::Work => return ["Trabajar".to_string(), "Trabajo".to_string()]
     }
 }
 

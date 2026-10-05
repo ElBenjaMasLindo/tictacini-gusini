@@ -2,7 +2,6 @@ use std::time::{Instant, Duration};
 
 #[derive(Debug, PartialEq)]
 pub enum States {
-    Init,
     Work,
     Other,
 }
@@ -18,17 +17,13 @@ impl Timer {
         
         Timer {
             time: foo,
-            state: States::Init
+            state: States::Work
         }
     }
 
     pub fn play(&mut self) {
         println!("{:?}", self.state);
         match self.state {
-            States::Init => {
-                self.time.push((States::Work, Instant::now()));
-                self.state = States::Work;
-            },
             States::Other => {
                 self.time.push((States::Other, Instant::now()));
                 self.state = States::Work;
