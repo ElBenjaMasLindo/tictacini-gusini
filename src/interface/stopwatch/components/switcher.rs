@@ -22,23 +22,17 @@ pub fn index(timer: Rc<RefCell<T::Timer>>, record: &Rc<RefCell<ScrolledWindow>>)
     button.set_label(&shared::state_to_text(&timer.borrow().state)[0]);
 
     button.connect_clicked(move |button| {
-        println!("Boton: {:?}", timer.borrow().state);
         timer.borrow_mut().play();
         button.set_label(&shared::state_to_text(&timer.borrow().state)[0]);
-        println!("Boton: {:?}", timer.borrow().state);
 
         record.borrow_mut().set_child(None::<&adw::gtk::Widget>);
         
         let container = Box::new(Orientation::Vertical, gb::PADDING);
         record.borrow_mut().set_child(Some(&container));
 
-        println!("I");
         for i in timer.borrow().show().iter().rev() {
-            println!("for I : {i:?}");
             container.append(&record::card(i.0, i.1));
-            println!("{i:?}")
         }
-        println!("--------------------");
     });
 
     button

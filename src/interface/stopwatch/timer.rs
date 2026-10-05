@@ -26,7 +26,6 @@ impl Timer {
     }
 
     pub fn play(&mut self) {
-        println!("{:?}", self.state);
         match self.state {
             States::Other => {
                 self.time.push((States::Other, Instant::now()));
@@ -37,7 +36,6 @@ impl Timer {
                 self.state = States::Other;
             },
         }
-        println!("{:?}", self.state);
     }
 
     pub fn show(&self) -> Vec<(&States, Option<Duration>)> {

@@ -23,6 +23,5 @@ pub fn duration_to_string(time: Option<Duration>) -> String {
     ];
 
     time.pop_if(|x| *x <= 0);
-    println!("{time:?}");
     time.iter().rev().map(u64::to_string).collect::<Vec<_>>().join(s)
 }
