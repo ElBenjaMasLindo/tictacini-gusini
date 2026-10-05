@@ -1,6 +1,9 @@
 # Rust
 /target
 
+# Export
+*.AppImage
+
 # Nix
 .direnv/
 .envrc
