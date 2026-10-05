@@ -1,5 +1,6 @@
 use std::time::{Instant, Duration};
 
+#[derive(Debug)]
 pub enum States {
     Init,
     Work,

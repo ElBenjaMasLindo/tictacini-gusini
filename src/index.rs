@@ -4,7 +4,7 @@ use crate::interface::interface;
 use adw::prelude::*; // GTK
 use adw::{Application, ToolbarView, ApplicationWindow};
 
-const TAMAÑO: (i32, i32) = (800, 800); // x, y
+const TAMAÑO: (i32, i32) = (500, 900); // x, y
 
 pub fn index(app: &Application) {
     let tabs = interface::views();

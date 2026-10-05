@@ -12,10 +12,11 @@ use crate::gb;
 pub fn panel() -> Box {
     let pagina = Box::new(Orientation::Vertical, gb::PADDING);
     let timer = Rc::new(RefCell::new(T::Timer::new()));
+    let record = Rc::new(RefCell::new(components::record::index(timer.clone())));
 
     pagina.append(&components::clock::index(timer.clone()));
-    pagina.append(&components::record::index(timer.clone()));
-    pagina.append(&components::switcher::index(timer.clone()));
-    
+    pagina.append(&components::switcher::index(timer.clone(), &record));
+    pagina.append(&record.borrow().clone());
+
     pagina
 }

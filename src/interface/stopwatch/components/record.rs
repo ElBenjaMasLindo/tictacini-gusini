@@ -12,21 +12,36 @@ use std::cell::RefCell;
 use std::rc::Rc;
 
 pub fn index(_timer: Rc<RefCell<T::Timer>>) -> ScrolledWindow {
-    let scrool = ScrolledWindow::new();
-    scrool.set_halign(gtk::Align::Center);
+    let scroll = ScrolledWindow::builder()
+        .build();
 
-    gb::space(&scrool);
+    scroll.set_halign(gtk::Align::Center);
+    scroll.set_vexpand(true);
+    scroll.set_policy(
+        gtk::PolicyType::Never, // X
+        gtk::PolicyType::Automatic // Y
+    );
 
-    scrool
+    gb::space(&scroll);
+
+    scroll
 }
 
-fn card(state: &T::States, time: Option<Duration>) -> Box {
+pub fn card(state: &T::States, time: Option<Duration>) -> Box {
     let card = Box::new(Orientation::Horizontal, gb::PADDING);
     card.add_css_class("card");
-    gb::space(&card);
     
     let state = Label::new(Some(&shared::state_to_text(state)));
     let label = Label::new(None);
+
+    gb::space(&state);
+    state.set_hexpand(true);
+    state.set_halign(gtk::Align::Start);
+    
+    gb::space(&label);
+    label.set_hexpand(true);
+    label.set_margin_end(27);
+
     
     match time {
         Some(foo) => label.set_label(&shared::duration_to_string(Some(foo))),

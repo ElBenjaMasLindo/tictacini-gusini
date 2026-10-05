@@ -21,12 +21,12 @@ pub fn views() -> ViewStack {
     let tabs = ViewStack::new();
 
     let names = ["Cronometro", "Estadisticas"];
-    tabs.add_titled_with_icon(&evenly::space_evenly(stopwatch::panel()),
+    tabs.add_titled_with_icon(&evenly::space_evenly(stopwatch::panel(), (true, false)),
         Some(&names[0].to_lowercase()),
         names[0],
         "alarm-symbolic"
     );
-    tabs.add_titled_with_icon(&evenly::space_evenly(stads::panel()),
+    tabs.add_titled_with_icon(&evenly::space_evenly(stads::panel(), (true, true)),
         Some(&names[1].to_lowercase()),
         names[1],
         "open-menu-symbolic"

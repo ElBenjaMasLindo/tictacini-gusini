@@ -3,15 +3,20 @@ use adw::gtk::{Box, Widget, Orientation};
 
 use crate::gb;
 
-pub fn space_evenly(panel: impl IsA<Widget>) -> Box {
+pub fn space_evenly(panel: impl IsA<Widget>, activate: (bool, bool)) -> Box {
     let index = Box::new(Orientation::Vertical, gb::PADDING);
-    
-    let up = get_space();
-    let down = get_space();
-    
-    index.append(&up);
+
+    if activate.0 {
+        let up = get_space();
+        index.append(&up);
+    }
+
     index.append(&panel);
-    index.append(&down);
+
+    if activate.1 {
+        let down = get_space();
+        index.append(&down);
+    };
 
     index
 }
