@@ -1,9 +1,9 @@
 use adw::prelude::*; // GTK
-use adw::gtk::{Box, Orientation};
+use adw::gtk::{Box, Widget, Orientation};
 
 use crate::gb;
 
-pub fn space_evenly(panel: Box) -> Box {
+pub fn space_evenly(panel: impl IsA<Widget>) -> Box {
     let index = Box::new(Orientation::Vertical, gb::PADDING);
     
     let up = get_space();

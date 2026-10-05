@@ -13,7 +13,7 @@ pub fn bar(tabs: &ViewStack) -> ViewSwitcher {
         
         .hexpand(false) // Lo Centramos
         .halign(Align::Center)
-        
+
         .build()
 }
 

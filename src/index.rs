@@ -20,7 +20,7 @@ pub fn index(app: &Application) {
         .default_height(TAMAÑO.1) // y
         .application(app)
         .content(&program)
-        .title(gb::NAME)
+        .title(gb::NAME) 
         .build();
 
     index.present();
