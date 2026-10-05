@@ -9,18 +9,20 @@ pub fn state_to_text(state: &T::States) -> [String; 2] {
 }
 
 pub fn duration_to_string(time: Option<Duration>) -> String {
-    let s = "  :  ";
+    let s = " : ";
     
     let Some(duration) = time else {
-        return format!("0{s}0{s}0").to_string();
+        return format!("0{s}0").to_string();
     };
 
     let secs = duration.as_secs();
-    let time = (
+    let mut time = vec![
         secs % 60, // Segundos
         secs / 60 % 60, // Minutos
         secs / 60 / 60, // Horas
-    );
-    
-    format!("{}{s}{}{s}{}", time.2, time.1, time.0)
+    ];
+
+    time.pop_if(|x| *x <= 0);
+    println!("{time:?}");
+    time.iter().rev().map(u64::to_string).collect::<Vec<_>>().join(s)
 }

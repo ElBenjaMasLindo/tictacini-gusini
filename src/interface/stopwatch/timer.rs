@@ -21,6 +21,10 @@ impl Timer {
         }
     }
 
+    pub fn reset(&mut self) {
+        *self = Timer::new();
+    }
+
     pub fn play(&mut self) {
         println!("{:?}", self.state);
         match self.state {

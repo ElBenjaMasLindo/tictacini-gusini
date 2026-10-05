@@ -4,8 +4,6 @@ use adw::gtk::Align;
 use super::stopwatch::panel as stopwatch;
 use super::stads::panel as stads;
 
-use super::evenly;
-
 pub fn bar(tabs: &ViewStack) -> ViewSwitcher {
     ViewSwitcher::builder()
         .stack(&tabs)
