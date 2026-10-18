@@ -1,17 +1,16 @@
-use super::timer as T;
 use super::components;
+use super::timer as T;
 
-use adw::prelude::*; // GTK
 use adw::gtk::{Box, Orientation};
+use adw::prelude::*; // GTK
 
 use std::cell::RefCell;
 use std::rc::Rc;
 
 use crate::gb;
 
-pub fn panel() -> Box {
+pub fn panel(timer: Rc<RefCell<T::Timer>>) -> Box {
     let pagina = Box::new(Orientation::Vertical, gb::PADDING);
-    let timer = Rc::new(RefCell::new(T::Timer::new()));
     let record = Rc::new(RefCell::new(components::record::index(timer.clone())));
 
     pagina.append(&components::clock::index(timer.clone()));
