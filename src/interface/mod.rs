@@ -1,3 +1,4 @@
 pub mod interface;
-pub mod stopwatch;
 pub mod stads;
+pub mod stopwatch;
+pub mod timer;

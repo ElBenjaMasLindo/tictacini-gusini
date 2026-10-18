@@ -1,4 +1,4 @@
-use super::stopwatch::timer::Timer as T;
+use crate::interface::timer as T;
 
 use adw::gtk::Align;
 use adw::{ViewStack, ViewSwitcher}; // GTK
@@ -20,17 +20,17 @@ pub fn bar(tabs: &ViewStack) -> ViewSwitcher {
 
 pub fn views() -> ViewStack {
     let tabs = ViewStack::new();
-    let timer = Rc::new(RefCell::new(T::new()));
+    let timer = Rc::new(RefCell::new(T::Timer::new()));
 
     let names = ["Cronometro", "Estadisticas"];
     tabs.add_titled_with_icon(
         &stopwatch::panel(timer.clone()),
         Some(&names[0].to_lowercase()),
         names[0],
-        "alarm-symbolic",
+        "timer-symbolic",
     );
     tabs.add_titled_with_icon(
-        &stads::panel(),
+        &stads::panel(timer),
         Some(&names[1].to_lowercase()),
         names[1],
         "open-menu-symbolic",

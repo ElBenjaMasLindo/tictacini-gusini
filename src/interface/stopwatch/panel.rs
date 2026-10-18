@@ -1,5 +1,5 @@
 use super::components;
-use super::timer as T;
+use crate::interface::timer as T;
 
 use adw::gtk::{Box, Orientation};
 use adw::prelude::*; // GTK
